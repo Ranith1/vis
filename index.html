@@ -1,30 +1,49 @@
 <!DOCTYPE html>
 <html>
+
 <head>
- 
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-  
-
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
-  
-</head>
-<body>
-  
- 
-  <div id="pokies_map"></div>
-
- 
-  <script type="text/javascript">
-    
-    var spec = "vis1.vg";  
-    
+    <title>Pokies Visualizations</title>
    
-    vegaEmbed('#pokies_map', spec).then(function(result) {
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
-    }).catch(console.error);  
-  </script>
 
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div class="page">
+        <h2>Pokies Visualizations</h2>
+
+        
+        <h2>Pokies Spend by Region</h2>
+        <div class="vis-container">
+            <div id="vis1"></div>
+        </div>
+
+        <hr class="hr3">
+
+        
+        <h2>Metro vs. Regional: Number of Pokies</h2>
+        <div class="vis-container">
+            <div id="vis2"></div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 <a href="https://yourwebsite.com" target="_blank">Your Name or Organization</a>. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        
+        var specVis1 = "vis1.vg";  
+        vegaEmbed('#vis1', specVis1);
+
+        
+        var specVis2 = "vis2.vg";  
+        vegaEmbed('#vis2', specVis2);
+    </script>
 </body>
+
 </html>

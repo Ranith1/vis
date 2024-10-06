@@ -4,18 +4,18 @@
     "width": 400,
     "height": 400,
     "data": {
-      "url": "https://raw.githubusercontent.com/Ranith1/vis/refs/heads/main/w10/pokies_data.csv"
+      "url": "https://raw.githubusercontent.com/Ranith1/vis/refs/heads/main/pokies_data.csv"
     },
     "transform": [
       {
-        "filter": "datum['Number of Pokies'] > 0"  
+        "filter": "datum['Number of Pokies'] > 0"
       },
       {
         "aggregate": [{"op": "sum", "field": "Number of Pokies", "as": "Total Pokies"}],
-        "groupby": ["Region"]  
+        "groupby": ["Region"]
       }
     ],
-    "mark": {"type": "arc", "innerRadius": 0, "outerRadius": 150},  
+    "mark": {"type": "arc", "innerRadius": 0, "outerRadius": 150},
     "encoding": {
       "theta": {
         "field": "Total Pokies",
@@ -27,8 +27,8 @@
         "type": "nominal",
         "title": "Region Type",
         "scale": {
-          "domain": ["Metro", "Regional"],  
-          "range": ["#1f77b4", "#aec7e8"]   
+          "domain": ["Metro", "Regional"],
+          "range": ["#1f77b4", "#aec7e8"]
         }
       },
       "tooltip": [
@@ -37,4 +37,5 @@
       ]
     }
   }
+  
   

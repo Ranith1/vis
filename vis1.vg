@@ -1,90 +1,89 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Pokies Spend by Region",
-    "width": "container",
-    "height": 500,
-    "params": [
-      {
-        "name": "zoom_level",
-        "value": 3000,  
-        "bind": {
-          "input": "range",
-          "min": 2000,  
-          "max": 8000,  
-          "step": 500,
-          "name": "Zoom: "
-        }
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Pokies Spend by Region",
+  "width": "container",
+  "height": 500,
+  "params": [
+    {
+      "name": "zoom_level",
+      "value": 3000,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 8000,
+        "step": 500,
+        "name": "Zoom: "
       }
-    ],
-    "projection": {
-      "type": "mercator",
-      "scale": { "expr": "zoom_level" },
-      "center": [145, -37.95]  
-    },
-    "layer": [
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/Ranith1/vis/refs/heads/main/w10/data.geojson",
-          "format": {
-            "type": "json",
-            "property": "features"
-          }
-        },
-        "mark": {
-          "type": "geoshape",
-          "fill": "#dddddd",
-          "stroke": "white",
-          "strokeWidth": 1
-        },
-        "encoding": {
-          "tooltip": { "field": "properties.LGA_NAME", "type": "nominal", "title": "Region" }
+    }
+  ],
+  "projection": {
+    "type": "mercator",
+    "scale": { "expr": "zoom_level" },
+    "center": [145, -37.95]
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Ranith1/vis/refs/heads/main/data.geojson",
+        "format": {
+          "type": "json",
+          "property": "features"
         }
       },
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/Ranith1/vis/refs/heads/main/w10/pokies_data.csv"
+      "mark": {
+        "type": "geoshape",
+        "fill": "#dddddd",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "tooltip": { "field": "properties.LGA_NAME", "type": "nominal", "title": "Region" }
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Ranith1/vis/refs/heads/main/pokies_data.csv"
+      },
+      "transform": [
+        {
+          "lookup": "Council",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/Ranith1/vis/refs/heads/main/data.geojson",
+              "format": { "type": "json", "property": "features" }
+            },
+            "key": "properties.LGA_NAME"
+          },
+          "as": "geo"
+        }
+      ],
+      "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
+      "encoding": {
+        "shape": { "field": "geo", "type": "geojson" },
+        "color": {
+          "condition": {
+            "test": "datum['Spent Per Year 2022-23'] == 0",
+            "value": "lightgrey"
+          },
+          "field": "Spent Per Year 2022-23",
+          "type": "quantitative",
+          "scale": {
+            "domainMin": 1,
+            "scheme": "reds"
+          },
+          "legend": { "title": "Spent per Year (AUD)" }
         },
-        "transform": [
+        "tooltip": [
+          { "field": "Council", "type": "nominal", "title": "Region" },
           {
-            "lookup": "Council",
-            "from": {
-              "data": {
-                "url": "https://raw.githubusercontent.com/Ranith1/vis/refs/heads/main/w10/data.geojson",
-                "format": { "type": "json", "property": "features" }
-              },
-              "key": "properties.LGA_NAME"
-            },
-            "as": "geo"
-          }
-        ],
-        "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
-        "encoding": {
-          "shape": { "field": "geo", "type": "geojson" },
-          "color": {
-            "condition": {
-              "test": "datum['Spent Per Year 2022-23'] == 0",
-              "value": "lightgrey"
-            },
             "field": "Spent Per Year 2022-23",
             "type": "quantitative",
-            "scale": {
-              "domainMin": 1,
-              "scheme": "reds"
-            },
-            "legend": { "title": "Spent per Year (AUD)" }
+            "title": "Spent per Year",
+            "format": ","
           },
-          "tooltip": [
-            { "field": "Council", "type": "nominal", "title": "Region" },
-            {
-              "field": "Spent Per Year 2022-23",
-              "type": "quantitative",
-              "title": "Spent per Year",
-              "format": ","
-            },
-            { "field": "Number of Pokies", "type": "quantitative", "title": "Number of Pokies" }
-          ]
-        }
+          { "field": "Number of Pokies", "type": "quantitative", "title": "Number of Pokies" }
+        ]
       }
-    ]
-  }
-  
+    }
+  ]
+}
