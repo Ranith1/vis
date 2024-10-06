@@ -1,0 +1,40 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Number of Pokies by Metro vs. Regional",
+    "width": 400,
+    "height": 400,
+    "data": {
+      "url": "https://raw.githubusercontent.com/Ranith1/vis/refs/heads/main/w10/pokies_data.csv"
+    },
+    "transform": [
+      {
+        "filter": "datum['Number of Pokies'] > 0"  
+      },
+      {
+        "aggregate": [{"op": "sum", "field": "Number of Pokies", "as": "Total Pokies"}],
+        "groupby": ["Region"]  
+      }
+    ],
+    "mark": {"type": "arc", "innerRadius": 0, "outerRadius": 150},  
+    "encoding": {
+      "theta": {
+        "field": "Total Pokies",
+        "type": "quantitative",
+        "title": "Total Number of Pokies"
+      },
+      "color": {
+        "field": "Region",
+        "type": "nominal",
+        "title": "Region Type",
+        "scale": {
+          "domain": ["Metro", "Regional"],  
+          "range": ["#1f77b4", "#aec7e8"]   
+        }
+      },
+      "tooltip": [
+        {"field": "Region", "type": "nominal", "title": "Region Type"},
+        {"field": "Total Pokies", "type": "quantitative", "title": "Total Number of Pokies"}
+      ]
+    }
+  }
+  
