@@ -1,47 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokies Visualizations</title>
-   
-    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
+    
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
+    
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
-    <div class="page">
-        <h2>Pokies Visualizations</h2>
+    <h1>Pokies Visualizations</h1>
 
-        
-        <h2>Pokies Spend by Region</h2>
-        <div class="vis-container">
+    <div class="grid-container">
+        <div class="vis-item">
+            <h2>Pokies Spend by Region</h2>
             <div id="vis1"></div>
         </div>
 
-        <hr class="hr3">
+        <div class="description-box">
+            <p>This visualization shows the amount of money spent on pokies (slot machines) across different regions in Victoria. The darker the color, the higher the spend in that region.
+                Spending evidently gets significantly higher in urban areas, due to higher population density, increased economic activity and more pokies venues. Rural areas have a lower amount of
+                money spent, due to lower population density and economic differences. 
+            </p>
 
-        
-        <h2>Metro vs. Regional: Number of Pokies</h2>
-        <div class="vis-container">
+            <p>
+                Tip: Try zooming into a region or hovering over one!
+            </p>
+        </div>
+
+        <div class="vis-item">
+            <h2>Metro vs. Regional: Number of Pokies</h2>
             <div id="vis2"></div>
         </div>
 
-        <footer>
-            <p>&copy; 2024 <a href="https://yourwebsite.com" target="_blank">Your Name or Organization</a>. All rights reserved.</p>
-        </footer>
+        <div class="description-box">
+            <p>This pie chart compares the number of pokies in Metro vs. Regional areas of Victoria. Each slice represents the proportion of pokies in each area. The majority of pokies are located in metro areas, as indicated by the larger portion of the pie chart being assigned to "Metro." This can be attributed to higher population in metro areas, greater economic concentration, and the fact that metropolitan areas tend to be hubs for tourism and entertainment.
+            </p>
+
+            <p>
+                Tip: Try hovering over the pie chart!
+            </p>
+        </div>
     </div>
 
+    <footer>
+        <p>&copy; Visualisation created by Ranith Simanmeru Pathiranage, October 2024. Sources obtained from:</p>
+        <p>
+            <a href="https://responsiblegambling.vic.gov.au/resources/gambling-victoria/expenditure-on-gambling-victoria-and-australia/" target="_blank">
+                Pokies Expenditure, Responsible Gambling Victoria
+            </a>
+        </p>
+        <p>
+            <a href="https://responsiblegambling.vic.gov.au/resources/gambling-victoria/pokies-across-victoria/victoria/" target="_blank">
+                Pokies across Victoria, Responsible Gambling Victoria
+            </a>
+        </p>
+    </footer>
+
     <script type="text/javascript">
-        
-        var specVis1 = "vis1.vg";  
+        // Visualization 1 (Pokies Spend by Region)
+        var specVis1 = "vis1.vg";
         vegaEmbed('#vis1', specVis1);
 
-        
-        var specVis2 = "vis2.vg";  
+        // Visualization 2 (Metro vs. Regional Pie Chart)
+        var specVis2 = "vis2.vg";
         vegaEmbed('#vis2', specVis2);
     </script>
 </body>

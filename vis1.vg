@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Pokies Spend by Region",
-  "width": "container",
+  "width": 700,
   "height": 500,
   "params": [
     {
@@ -69,7 +69,7 @@
           "type": "quantitative",
           "scale": {
             "domainMin": 1,
-            "scheme": "reds"
+            "scheme": "blues"
           },
           "legend": { "title": "Spent per Year (AUD)" }
         },
